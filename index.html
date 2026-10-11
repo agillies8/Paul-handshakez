@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Hollywood Handshake Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a bunting-topped tent page; one big hero number, then a two-column grid of chart cards, then the full ledger table. */
+:root{
+  --bg:#eef4f8; --surface:#ffffff; --ink:#15213a; --muted:#56637a; --line:#d4dfe9;
+  --accent:#2a78d6; --accent-ink:#ffffff; --pink:#e2678f; --mint:#1baf7a; --butter:#eda100;
+  --sig:#2a78d6; --show:#eb6834;
+  --h0:#e3ebf3; --h1:#9ec5f4; --h2:#5598e7; --h3:#1c5cab; --h1ink:#15213a; --h2ink:#ffffff; --h3ink:#ffffff;
+  --gingham-a:rgba(42,120,214,.10); --gingham-b:rgba(42,120,214,.18);
+  --display:"Bagel Fat One","Cooper Black","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1524; --surface:#172136; --ink:#edf2f9; --muted:#a2aec3; --line:#2a3752;
+  --accent:#3987e5; --accent-ink:#0e1524; --pink:#ec84a8; --mint:#199e70; --butter:#c98500;
+  --sig:#3987e5; --show:#d95926;
+  --h0:#1f2b44; --h1:#184f95; --h2:#2a78d6; --h3:#86b6ef; --h1ink:#edf2f9; --h2ink:#ffffff; --h3ink:#0e1524;
+  --gingham-a:rgba(57,135,229,.10); --gingham-b:rgba(57,135,229,.18); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1524; --surface:#172136; --ink:#edf2f9; --muted:#a2aec3; --line:#2a3752;
+  --accent:#3987e5; --accent-ink:#0e1524; --pink:#ec84a8; --mint:#199e70; --butter:#c98500;
+  --sig:#3987e5; --show:#d95926;
+  --h0:#1f2b44; --h1:#184f95; --h2:#2a78d6; --h3:#86b6ef; --h1ink:#edf2f9; --h2ink:#ffffff; --h3ink:#0e1524;
+  --gingham-a:rgba(57,135,229,.10); --gingham-b:rgba(57,135,229,.18); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+.bunting{height:34px;display:flex;overflow:hidden;gap:0;
+  background:linear-gradient(var(--line),var(--line)) top/100% 2px no-repeat}
+.bunting i{flex:0 0 34px;height:30px;clip-path:polygon(0 0,100% 0,50% 100%);margin-top:2px}
+.bunting i:nth-child(4n+1){background:var(--accent)}.bunting i:nth-child(4n+2){background:var(--pink)}
+.bunting i:nth-child(4n+3){background:var(--mint)}.bunting i:nth-child(4n){background:var(--butter)}
+header.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end;padding-block:36px 28px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:.95;margin:.2em 0 .25em;text-wrap:balance;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{max-width:56ch;color:var(--muted);font-size:17px;margin:0}
+.bignum{background:var(--surface);border:2px solid var(--ink);border-radius:18px;padding:20px 22px;position:relative;overflow:hidden}
+.bignum::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(0deg,var(--gingham-a) 0 14px,transparent 14px 28px),
+  repeating-linear-gradient(90deg,var(--gingham-a) 0 14px,transparent 14px 28px);pointer-events:none}
+.bignum>*{position:relative}
+.bignum .n{font-family:var(--display);font-size:clamp(84px,14vw,136px);line-height:.9;color:var(--accent)}
+.bignum .cap{font-weight:600;font-size:16px}
+.bignum .sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-block:8px 28px}
+.fact{border-top:3px solid var(--ink);padding-top:10px}
+.fact b{display:block;font-family:var(--display);font-weight:400;font-size:34px;line-height:1.05}
+.fact span{color:var(--muted);font-size:14px}
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.group>label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.chip{font:inherit;font-size:13px;font-weight:600;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 11px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,input:focus-visible,a:focus-visible,rect:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input#q{font:inherit;font-size:14px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);min-width:0;width:220px;max-width:100%}
+.status{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;min-width:0}
+.card.wide{grid-column:1/-1}
+.card h2{font-family:var(--body);font-weight:800;font-size:19px;margin:0;text-wrap:balance}
+.card p.k{margin:2px 0 12px;color:var(--muted);font-size:14px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-bottom:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{fill:var(--muted);font-family:var(--mono);font-size:11px}
+svg .lbl{fill:var(--ink);font-family:var(--body);font-size:12.5px;font-weight:600}
+svg .val{fill:var(--ink);font-family:var(--mono);font-size:11.5px}
+svg .grid line{stroke:var(--line);stroke-width:1}
+svg .hit{fill:transparent;cursor:pointer}
+.lb{display:grid;gap:8px}
+.lb .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.lb .who{font-weight:600}.lb .who small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.hands{display:flex;gap:4px}
+.hands span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-family:var(--mono);color:var(--accent-ink);background:var(--sig)}
+.hands span.sh{background:var(--show)}
+.insights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ins{border:1px solid var(--line);border-radius:14px;padding:14px}
+.ins b{font-family:var(--display);font-weight:400;font-size:30px;color:var(--accent);display:block;line-height:1.1}
+.ins p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.ins p strong{color:var(--ink)}
+.split{display:flex;height:26px;border-radius:6px;overflow:hidden;gap:2px;margin-block:8px}
+.split div{display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--accent-ink);min-width:0}
+.tablewrap{overflow-x:auto;margin-top:6px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:14px}
+th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 8px;border-bottom:2px solid var(--ink);white-space:nowrap}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td .note{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;border-radius:999px;padding:1px 8px;white-space:nowrap;border:1.5px solid currentColor}
+.pill.sig{color:var(--sig)}.pill.sh{color:var(--show)}
+.pill.star{color:var(--butter)}.pill.win{color:var(--mint)}
+.conf{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.conf.high::before{content:"●● "}.conf.medium::before{content:"●○ "}
+a{color:var(--accent)}
+.empty{padding:22px;text-align:center;color:var(--muted)}
+.tip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.35;border-radius:10px;padding:8px 10px;max-width:260px;opacity:0;transition:opacity .1s}
+.tip b{display:block}
+footer{margin-top:28px;color:var(--muted);font-size:13.5px;max-width:80ch}
+footer h3{color:var(--ink);font-size:15px;margin:0 0 4px}
+@media (max-width:820px){
+  header.hero{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .insights{grid-template-columns:1fr}
+  .status{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bunting" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+<header class="hero">
+  <div>
+    <div class="eyebrow">The Great British Bake Off · Series 1 to 17</div>
+    <h1>The Hollywood <em>Handshake</em> Index</h1>
+    <p class="lede">Every time Paul Hollywood stuck out his hand instead of saying "good bake". Who got one, what they made, which week, and whether it meant anything.</p>
+  </div>
+  <div class="bignum">
+    <div class="n" id="bigN">65</div>
+    <div class="cap" id="bigCap">handshakes across 157 episodes</div>
+    <div class="sub" id="bigSub">That is one every 2.4 episodes. Zero in technicals, ever.</div>
+  </div>
+</header>
+
+<section class="facts" id="facts"></section>
+
+<div class="controls" role="toolbar" aria-label="Filters">
+  <div class="group"><label>Era</label>
+    <button class="chip" data-f="era" data-v="all" aria-pressed="true">All</button>
+    <button class="chip" data-f="era" data-v="Mary Berry" aria-pressed="false">Mary &amp; BBC</button>
+    <button class="chip" data-f="era" data-v="Prue Leith" aria-pressed="false">Prue &amp; Channel 4</button>
+  </div>
+  <div class="group"><label>Challenge</label>
+    <button class="chip" data-f="ch" data-v="all" aria-pressed="true">All</button>
+    <button class="chip" data-f="ch" data-v="Signature" aria-pressed="false">Signature</button>
+    <button class="chip" data-f="ch" data-v="Showstopper" aria-pressed="false">Showstopper</button>
+  </div>
+  <input id="q" type="search" placeholder="Search a baker or bake" aria-label="Search a baker or bake">
+  <span class="status" id="status"></span>
+</div>
+
+<div class="grid">
+  <section class="card wide">
+    <h2>Handshakes per series</h2>
+    <p class="k">Series 9 is the peak. Tap a bar to filter everything to that series.</p>
+    <div class="legend"><span><i style="background:var(--sig)"></i>Signature</span><span><i style="background:var(--show)"></i>Showstopper</span></div>
+    <div style="overflow-x:auto"><div id="chSeries" style="min-width:640px"></div></div>
+  </section>
+
+  <section class="card wide">
+    <h2>The handshake calendar</h2>
+    <p class="k">Each square is one episode. Darker squares had more handshakes. Series 1 and 2 were shorter, and series 17 is still airing.</p>
+    <div class="legend" id="heatLegend"></div>
+    <div id="chHeat" style="overflow-x:auto"></div>
+  </section>
+
+  <section class="card">
+    <h2>What earns one</h2>
+    <p class="k">Handshakes by type of bake.</p>
+    <div id="chCat"></div>
+  </section>
+
+  <section class="card">
+    <h2>When in the series</h2>
+    <p class="k">Handshakes by week number. The final is week 10.</p>
+    <div id="chWeek"></div>
+  </section>
+
+  <section class="card">
+    <h2>Repeat shakers</h2>
+    <p class="k">Bakers with more than one handshake. Each circle is one, labelled with its week.</p>
+    <div class="lb" id="lb"></div>
+  </section>
+
+  <section class="card">
+    <h2>Does it mean anything?</h2>
+    <p class="k">What happened to the people who got one.</p>
+    <div class="insights" id="ins" style="grid-template-columns:1fr"></div>
+  </section>
+
+  <section class="card wide">
+    <h2>The ledger</h2>
+    <p class="k">Every handshake in the filter. Clip links open a YouTube search for that moment, since exact clip URLs and timestamps could not be verified.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Series · Wk</th><th>Aired</th><th>Week</th><th>Challenge</th><th>Baker</th><th>Bake</th><th>Category</th><th>That week / Final</th><th>Clip</th><th>Source</th></tr></thead>
+      <tbody id="tb"></tbody>
+    </table></div>
+  </section>
+</div>
+
+<footer>
+  <h3>About the data</h3>
+  <p id="method"></p>
+  <p>Confidence: ●● means two or more sources agree. ●○ means one complete list plus a consistent episode table. Download the data: <a href="data/handshakes.csv">handshakes.csv</a>, <a href="data/episodes.csv">episodes.csv</a>, <a href="data/handshakes.json">handshakes.json</a>.</p>
+</footer>
+</div>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script type="module">
+const DATA = await (await fetch("data/handshakes.json")).json();
+const H = DATA.handshakes, EPS = DATA.episodes, SER = DATA.series;
+const state = {era:"all", ch:"all", q:"", series:null};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const NS = "http://www.w3.org/2000/svg";
+const fmtDate = iso => new Date(iso+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+
+function filtered(ignoreSeries){
+  const q = state.q.trim().toLowerCase();
+  return H.filter(r =>
+    (state.era==="all" || r.co_judge===state.era) &&
+    (state.ch==="all" || r.challenge===state.ch) &&
+    (ignoreSeries || state.series===null || r.series===state.series) &&
+    (!q || (r.baker+" "+r.bake+" "+r.episode_theme+" "+r.bake_category).toLowerCase().includes(q)));
+}
+function seriesInEra(s){ const x = SER.find(z=>z.series===s); return state.era==="all" || x.co_judge===state.era; }
+
+// tooltip
+const tip = $("#tip");
+document.addEventListener("pointermove", e => {
+  const t = e.target.closest && e.target.closest("[data-tip]");
+  if(!t){ tip.style.opacity=0; return; }
+  tip.innerHTML = t.getAttribute("data-tip");
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if(x + w > innerWidth - 8) x = e.clientX - w - 14;
+  if(y + h > innerHeight - 8) y = e.clientY - h - 14;
+  tip.style.left = Math.max(8,x)+"px"; tip.style.top = Math.max(8,y)+"px"; tip.style.opacity=1;
+});
+
+function el(tag, attrs, parent){ const n=document.createElementNS(NS,tag); for(const k in attrs) n.setAttribute(k,attrs[k]); if(parent) parent.appendChild(n); return n; }
+function txt(parent, x, y, s, attrs={}){ const t=el("text",{x,y,...attrs},parent); t.textContent=s; return t; }
+function rbar(parent, x, y, w, h, fill, roundTop){ // bar with 4px rounded data end, square baseline
+  const r = Math.min(4, w/2, h);
+  if(h<=0) return;
+  const d = roundTop
+    ? `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`
+    : `M${x},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h-r}Q${x+w},${y+h} ${x+w-r},${y+h}H${x}Z`;
+  return el("path",{d,fill},parent);
+}
+
+function drawSeries(){
+  const box = $("#chSeries"); box.innerHTML="";
+  const rows = filtered(true);
+  const W=1060, Ht=262, m={l:34,r:8,t:34,b:36};
+  const svg = el("svg",{viewBox:`0 0 ${W} ${Ht}`,role:"img","aria-label":"Bar chart of handshakes per series"},box);
+  const n = SER.length, iw=W-m.l-m.r, ih=Ht-m.t-m.b, bw=iw/n;
+  const max = 12, y = v => m.t + ih - v/max*ih;
+  const g = el("g",{class:"grid"},svg);
+  [0,3,6,9,12].forEach(v=>{ el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v)},g); txt(svg,m.l-8,y(v)+4,v,{"text-anchor":"end"}); });
+  // era bands
+  const split = m.l + 7*bw;
+  el("line",{x1:split,x2:split,y1:4,y2:Ht-m.b+30,stroke:"var(--line)","stroke-dasharray":"3 3"},svg);
+  txt(svg,m.l+4,14,"Mary Berry · BBC",{"class":"lbl"});
+  txt(svg,split+8,14,"Prue Leith · Channel 4",{"class":"lbl"});
+  SER.forEach((s,i)=>{
+    const sig = rows.filter(r=>r.series===s.series && r.challenge==="Signature").length;
+    const sh  = rows.filter(r=>r.series===s.series && r.challenge==="Showstopper").length;
+    const x = m.l + i*bw + bw*0.18, w = bw*0.64;
+    const dim = (state.series!==null && state.series!==s.series) || !seriesInEra(s.series);
+    const gg = el("g",{opacity:dim?0.28:1},svg);
+    const ySig = y(sig), yTop = y(sig+sh);
+    if(sig) rbar(gg,x,ySig,w,y(0)-ySig,"var(--sig)", sh===0);
+    if(sh) rbar(gg,x,yTop,w,ySig-yTop-(sig?2:0),"var(--show)",true);
+    if(sig+sh) txt(gg,x+w/2,yTop-5,sig+sh,{"text-anchor":"middle","class":"val"});
+    txt(svg,x+w/2,Ht-m.b+16,"S"+s.series,{"text-anchor":"middle"});
+    txt(svg,x+w/2,Ht-m.b+29,"'"+String(s.year).slice(2),{"text-anchor":"middle",opacity:.7});
+    const rate = (sig+sh)/s.episodes_aired;
+    const hit = el("rect",{class:"hit",x:m.l+i*bw,y:m.t,width:bw,height:ih,tabindex:0,
+      "data-tip":`<b>Series ${s.series} (${s.year})</b>${sig+sh} handshake${sig+sh===1?"":"s"} in ${s.episodes_aired} episodes<br>${sig} signature · ${sh} showstopper<br>Winner: ${esc(s.winner||"still airing")}`},svg);
+    const act = ()=>{ state.series = state.series===s.series ? null : s.series; render(); };
+    hit.addEventListener("click",act);
+    hit.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();act();} });
+  });
+}
+
+function drawHeat(){
+  const box=$("#chHeat"); box.innerHTML="";
+  const rows = filtered(true);
+  const cell=34, gap=4, m={l:44,t:22};
+  const W = m.l + 10*(cell+gap), Ht = m.t + SER.length*(cell*0.62+gap) + 6;
+  const ch = cell*0.62;
+  const svg = el("svg",{viewBox:`0 0 ${W} ${Ht}`,style:"min-width:420px;max-width:720px",role:"img","aria-label":"Grid of handshakes per episode"},box);
+  for(let e=1;e<=10;e++) txt(svg,m.l+(e-1)*(cell+gap)+cell/2,14,"W"+e,{"text-anchor":"middle"});
+  const fills=["var(--h0)","var(--h1)","var(--h2)","var(--h3)"];
+  SER.forEach((s,i)=>{
+    const yy = m.t + i*(ch+gap);
+    txt(svg,m.l-8,yy+ch/2+4,"S"+s.series,{"text-anchor":"end"});
+    EPS.filter(e=>e.series===s.series).forEach(ep=>{
+      const list = rows.filter(r=>r.series===ep.series && r.episode===ep.episode);
+      const n = list.length;
+      const dim = (state.series!==null && state.series!==s.series) || !seriesInEra(s.series);
+      const who = list.map(r=>esc(r.baker_first_name)).join(", ");
+      el("rect",{x:m.l+(ep.episode-1)*(cell+gap),y:yy,width:cell,height:ch,rx:4,fill:fills[Math.min(n,3)],opacity:dim?0.3:1,
+        "data-tip":`<b>S${ep.series} W${ep.episode}: ${esc(ep.theme)}</b>${fmtDate(ep.air_date)}<br>${n? n+" handshake"+(n>1?"s":"")+": "+who : "No handshakes"}${ep.star_baker?"<br>Star Baker: "+esc(ep.star_baker):""}`},svg);
+      if(n) txt(svg,m.l+(ep.episode-1)*(cell+gap)+cell/2,yy+ch/2+4,n,{"text-anchor":"middle",style:`fill:var(--h${Math.min(n,3)}ink)`});
+    });
+  });
+  $("#heatLegend").innerHTML = ["0","1","2","3"].map((k,i)=>`<span><i style="background:${fills[i]};border:1px solid var(--line)"></i>${k}</span>`).join("");
+}
+
+function hbars(box, items, color){
+  box.innerHTML="";
+  const W=500, rowH=30, m={l:150,r:36,t:4};
+  const Ht = m.t + items.length*rowH;
+  const svg = el("svg",{viewBox:`0 0 ${W} ${Ht}`,role:"img"},box);
+  const max = Math.max(1,...items.map(d=>d.v));
+  items.forEach((d,i)=>{
+    const yy = m.t + i*rowH, w = (W-m.l-m.r)*d.v/max;
+    txt(svg,m.l-10,yy+rowH/2+4,d.k,{"text-anchor":"end","class":"lbl"});
+    el("rect",{x:m.l,y:yy+5,width:W-m.l-m.r,height:rowH-10,fill:"var(--h0)",rx:3},svg);
+    if(d.v) rbar(svg,m.l,yy+5,w,rowH-10,color,false);
+    txt(svg,m.l+w+6,yy+rowH/2+4,d.v,{"class":"val"});
+    el("rect",{class:"hit",x:0,y:yy,width:W,height:rowH,"data-tip":`<b>${esc(d.k)}</b>${d.tip||d.v}`},svg);
+  });
+}
+
+function drawCat(rows){
+  const cats=["Bread & Dough","Cake","Biscuits","Pastry & Pies","Desserts & Puddings","Pâtisserie & Small Bakes","Batter"];
+  const items = cats.map(c=>{ const l=rows.filter(r=>r.bake_category===c); return {k:c,v:l.length,tip:l.length?l.slice(0,6).map(r=>esc(r.baker_first_name)+": "+esc(r.bake)).join("<br>")+(l.length>6?"<br>and "+(l.length-6)+" more":""):"None in this filter"}; })
+    .sort((a,b)=>b.v-a.v);
+  hbars($("#chCat"),items,"var(--accent)");
+}
+function drawWeek(rows){
+  const items=[]; for(let w=1;w<=10;w++){ const l=rows.filter(r=>r.episode===w); items.push({k:w===10?"Week 10 (final)":w===9?"Week 9 (semi)":"Week "+w,v:l.length,tip:l.map(r=>"S"+r.series+" "+esc(r.baker_first_name)).join(", ")||"None"}); }
+  hbars($("#chWeek"),items,"var(--pink)");
+}
+
+function drawLB(rows){
+  const by={}; rows.forEach(r=>{(by[r.baker]=by[r.baker]||[]).push(r)});
+  const list=Object.entries(by).filter(([,l])=>l.length>1).sort((a,b)=>b[1].length-a[1].length || a[1][0].series-b[1][0].series);
+  $("#lb").innerHTML = list.length ? list.map(([b,l])=>`<div class="row"><div class="who">${esc(b)}<small>Series ${l[0].series} · ${esc(l[0].baker_final_placing)}</small></div>
+    <div class="hands">${l.map(r=>`<span class="${r.challenge==="Showstopper"?"sh":""}" data-tip="<b>Week ${r.episode}: ${esc(r.episode_theme)}</b>${esc(r.bake)}<br>${r.challenge}">W${r.episode}</span>`).join("")}</div></div>`).join("")
+    : `<div class="empty">Nobody has two handshakes in this filter.</div>`;
+}
+
+function drawIns(rows){
+  const n=rows.length||1;
+  const star=rows.filter(r=>r.star_baker_that_week).length;
+  const ppl=[...new Set(rows.map(r=>r.baker))];
+  const pplWon=ppl.filter(p=>rows.find(r=>r.baker===p).baker_won_series).length;
+  const sweet=rows.filter(r=>r.sweet_or_savoury==="Sweet").length, sav=rows.filter(r=>r.sweet_or_savoury==="Savoury").length, both=rows.length-sweet-sav;
+  const ages=rows.map(r=>r.baker_age).sort((a,b)=>a-b); const med = ages.length? ages[Math.floor(ages.length/2)] : "–";
+  const pct=v=>Math.round(100*v/n)+"%";
+  $("#ins").innerHTML = rows.length ? `
+  <div class="ins"><b>${pct(star)}</b><p><strong>${star} of ${rows.length}</strong> handshakes went to that week's Star Baker. A handshake is a good sign, not a guarantee.</p></div>
+  <div class="ins"><b>${pplWon} of ${ppl.length}</b><p>recipients went on to <strong>win their series</strong>. Of the 14 winners since series 3, only John Whaite, Nancy Birtwhistle and Georgie Grasso never got one.</p></div>
+  <div class="ins"><b>Sweet wins</b><p>Of these handshakes, ${sweet} were for sweet bakes, ${sav} for savoury and ${both} for bakes that were both. Median recipient age: <strong>${med}</strong>.</p>
+    <div class="split" aria-hidden="true"><div style="flex:${sweet};background:var(--pink)">${sweet||""}</div><div style="flex:${sav};background:var(--mint)">${sav||""}</div><div style="flex:${both};background:var(--butter)">${both||""}</div></div>
+    <div class="legend"><span><i style="background:var(--pink)"></i>Sweet</span><span><i style="background:var(--mint)"></i>Savoury</span><span><i style="background:var(--butter)"></i>Both</span></div></div>`
+  : `<div class="empty">No handshakes match these filters.</div>`;
+}
+
+function drawTable(rows){
+  $("#tb").innerHTML = rows.length ? rows.map(r=>`<tr>
+    <td class="num">S${r.series} · W${r.episode}</td>
+    <td class="num">${fmtDate(r.air_date)}</td>
+    <td>${esc(r.episode_theme)}${r.stage!=="Heats"?`<span class="note">${r.stage}</span>`:""}</td>
+    <td><span class="pill ${r.challenge==="Showstopper"?"sh":"sig"}">${r.challenge}</span></td>
+    <td><b>${esc(r.baker)}</b><span class="note">${r.baker_age}, ${esc(r.baker_occupation)}, ${esc(r.baker_hometown)}</span></td>
+    <td>${esc(r.bake)}${r.notes?`<span class="note">${esc(r.notes)}</span>`:""}</td>
+    <td>${esc(r.bake_category)}</td>
+    <td>${r.star_baker_that_week?`<span class="pill star">Star Baker</span> `:""}${r.baker_won_series?`<span class="pill win">Won</span>`:`<span class="note" style="margin:0">${esc(r.baker_final_placing)}</span>`}</td>
+    <td><a href="${r.youtube_search_url}" target="_blank" rel="noopener">Find clip</a></td>
+    <td><a class="conf ${r.confidence}" href="${r.source_url}" target="_blank" rel="noopener">${r.confidence}</a></td></tr>`).join("")
+    : `<tr><td colspan="10" class="empty">No handshakes match. Try clearing the search or picking “All”.</td></tr>`;
+}
+
+function drawFacts(){
+  const recips=new Set(H.map(r=>r.baker)).size;
+  const sh=H.filter(r=>r.challenge==="Showstopper").length;
+  const mary=H.filter(r=>r.co_judge==="Mary Berry").length, prue=H.length-mary;
+  const maryEps=EPS.filter(e=>e.series<=7).length, prueEps=EPS.length-maryEps;
+  $("#facts").innerHTML = `
+   <div class="fact"><b>${recips}</b><span>different bakers have shaken his hand</span></div>
+   <div class="fact"><b>${sh}</b><span>handshakes came in a showstopper. The rest were signatures.</span></div>
+   <div class="fact"><b>${(prue/prueEps).toFixed(2)}</b><span>per episode in the Channel 4 years, up from ${(mary/maryEps).toFixed(2)} on the BBC</span></div>
+   <div class="fact"><b>1</b><span>left-handed handshake, to Jasmine Mitchell in 2025's meringue week</span></div>`;
+}
+
+function render(){
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", String(state[c.dataset.f]===c.dataset.v)));
+  const rows = filtered(false);
+  drawSeries(); drawHeat(); drawCat(rows); drawWeek(rows); drawLB(rows); drawIns(rows); drawTable(rows);
+  const bits=[]; if(state.series!==null) bits.push("Series "+state.series);
+  $("#status").textContent = `${rows.length} of ${H.length} handshakes${bits.length?" · "+bits.join(", "):""}`;
+  if(state.series!==null){ $("#status").innerHTML += ` · <a href="#" id="clr">clear series</a>`; $("#clr").onclick=e=>{e.preventDefault();state.series=null;render();}; }
+}
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{ state[c.dataset.f]=c.dataset.v; render(); }));
+$("#q").addEventListener("input",e=>{ state.q=e.target.value; render(); });
+$("#method").textContent = DATA.meta.method + " Coverage: " + DATA.meta.coverage;
+drawFacts(); render();
+</script>
+
+</body></html>
