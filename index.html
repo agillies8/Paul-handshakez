@@ -87,7 +87,7 @@ input#q{font:inherit;font-size:14px;padding:6px 12px;border-radius:999px;border:
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-bottom:6px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 svg{display:block;width:100%;height:auto;overflow:visible}
-svg text{fill:var(--muted);font-family:var(--mono);font-size:11px}
+svg text{pointer-events:none;fill:var(--muted);font-family:var(--mono);font-size:11px}
 svg .lbl{fill:var(--ink);font-family:var(--body);font-size:12.5px;font-weight:700}
 svg .val{fill:var(--ink);font-family:var(--mono);font-size:11.5px}
 svg .grid line{stroke:var(--line);stroke-width:1}
@@ -245,9 +245,10 @@ function filtered(ignoreSeries){
 }
 function seriesInEra(s){ const x = SER.find(z=>z.series===s); return state.era==="all" || x.co_judge===state.era; }
 
-// tooltip
+// tooltip: follows the mouse; on touch, tap to show and tap elsewhere (or scroll) to hide
 const tip = $("#tip");
-document.addEventListener("pointermove", e => {
+let lastPointer = "mouse";
+function showTip(e){
   const t = e.target.closest && e.target.closest("[data-tip]");
   if(!t){ tip.style.opacity=0; return; }
   tip.innerHTML = t.getAttribute("data-tip");
@@ -256,7 +257,11 @@ document.addEventListener("pointermove", e => {
   if(x + w > innerWidth - 8) x = e.clientX - w - 14;
   if(y + h > innerHeight - 8) y = e.clientY - h - 14;
   tip.style.left = Math.max(8,x)+"px"; tip.style.top = Math.max(8,y)+"px"; tip.style.opacity=1;
-});
+}
+document.addEventListener("pointerdown", e => { lastPointer = e.pointerType; });
+document.addEventListener("pointermove", e => { if(e.pointerType==="mouse") showTip(e); });
+document.addEventListener("click", e => { if(lastPointer!=="mouse") showTip(e); });
+addEventListener("scroll", () => { if(lastPointer!=="mouse") tip.style.opacity=0; }, {capture:true, passive:true});
 
 function el(tag, attrs, parent){ const n=document.createElementNS(NS,tag); for(const k in attrs) n.setAttribute(k,attrs[k]); if(parent) parent.appendChild(n); return n; }
 function txt(parent, x, y, s, attrs={}){ const t=el("text",{x,y,...attrs},parent); t.textContent=s; return t; }
