@@ -159,6 +159,7 @@ footer h3{color:var(--accent);font-family:var(--display);font-weight:800;font-si
     <button class="chip" data-f="era" data-v="all" aria-pressed="true">All</button>
     <button class="chip" data-f="era" data-v="Mary Berry" aria-pressed="false">Mary &amp; BBC</button>
     <button class="chip" data-f="era" data-v="Prue Leith" aria-pressed="false">Prue &amp; Channel 4</button>
+    <button class="chip" data-f="era" data-v="Nigella Lawson" aria-pressed="false">Nigella</button>
   </div>
   <div class="group"><label>Challenge</label>
     <button class="chip" data-f="ch" data-v="all" aria-pressed="true">All</button>
@@ -288,6 +289,9 @@ function drawSeries(){
   el("line",{x1:split,x2:split,y1:4,y2:Ht-m.b+30,stroke:"var(--line)","stroke-dasharray":"3 3"},svg);
   txt(svg,m.l+4,14,"Mary Berry · BBC",{"class":"lbl"});
   txt(svg,split+8,14,"Prue Leith · Channel 4",{"class":"lbl"});
+  const split2 = m.l + 16*bw;
+  el("line",{x1:split2,x2:split2,y1:4,y2:Ht-m.b+30,stroke:"var(--line)","stroke-dasharray":"3 3"},svg);
+  txt(svg,W-m.r,14,"Nigella",{"class":"lbl","text-anchor":"end"});
   SER.forEach((s,i)=>{
     const sig = rows.filter(r=>r.series===s.series && r.challenge==="Signature").length;
     const sh  = rows.filter(r=>r.series===s.series && r.challenge==="Showstopper").length;
