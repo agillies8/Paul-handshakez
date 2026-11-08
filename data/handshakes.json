@@ -1,7 +1,7 @@
 {
  "meta": {
-  "compiled": "2026-10-11",
-  "coverage": "Series 1 (2010) to series 17 week 3 (aired 6 Oct 2026).",
+  "compiled": "2026-11-07",
+  "coverage": "Series 1 (2010) to series 17 week 7 (aired 3 Nov 2026).",
   "method": "Handshakes for series 1-16 week 5 come from BuzzFeed's full list (Oct 2025), cross-checked against Wikipedia episode tables; series 16 weeks 6-10 and series 17 come from weekly recaps. Baker bios, air dates and Star Bakers come from Wikipedia. Timestamps and clip links were not reliably findable, so they are left blank; each row has a YouTube search link instead. confidence=high means two or more sources agree; medium means one list source plus a consistent episode table.",
   "sources": [
    "https://www.buzzfeed.com/lukefield/every-paul-hollywood-handshake-gbbo",
@@ -9,7 +9,10 @@
    "https://www.eatyourbooks.com/blog/2025/10/18/the-great-british-bake-off-baking-show-meringue-week-7-2025",
    "https://www.tvguide.co.uk/articles/who-left-the-great-british-bake-off-2026-tonight-paul-hollywood-first-handshake-of-series/",
    "https://en.wikipedia.org/wiki/The_Great_British_Bake_Off",
-   "https://krdo.com/news/2026/01/27/nigella-lawson-to-replace-prue-leith-on-the-great-british-baking-show/"
+   "https://krdo.com/news/2026/01/27/nigella-lawson-to-replace-prue-leith-on-the-great-british-baking-show/",
+   "https://www.tvinsider.com/1299215/gbbo-recap-great-british-baking-show-dessert-week/",
+   "https://www.tvinsider.com/1302045/gbbo-great-british-baking-show-recap-free-from-week/",
+   "https://en.wikipedia.org/wiki/The_Great_British_Bake_Off_series_17"
   ]
  },
  "handshakes": [
@@ -2287,6 +2290,76 @@
    "source_url": "https://www.tvguide.co.uk/articles/who-left-the-great-british-bake-off-2026-tonight-paul-hollywood-first-handshake-of-series/",
    "confidence": "high",
    "baker_total_handshakes": 1
+  },
+  {
+   "id": 66,
+   "series": 17,
+   "year": 2026,
+   "episode": 5,
+   "episode_theme": "Desserts",
+   "stage": "Heats",
+   "air_date": "2026-10-20",
+   "days_since_series_start": 28,
+   "series_progress_pct": 44,
+   "challenge": "Signature",
+   "baker": "Connie Lewis",
+   "baker_first_name": "Connie",
+   "bake": "Chocolate orange self-saucing fondants",
+   "bake_category": "Desserts & Puddings",
+   "sweet_or_savoury": "Sweet",
+   "baker_age": 63,
+   "baker_occupation": "NHS hospital discharge lead",
+   "baker_hometown": "London",
+   "baker_final_placing": "Still in (series airing)",
+   "baker_won_series": false,
+   "star_baker_that_week": true,
+   "baker_handshake_number": 1,
+   "handshakes_in_episode": 1,
+   "co_judge": "Nigella Lawson",
+   "channel": "Channel 4",
+   "hosts": "Noel & Alison",
+   "timestamp_in_episode": "",
+   "youtube_clip_url": "",
+   "youtube_search_url": "https://www.youtube.com/results?search_query=Bake+Off+series+17+Connie+Lewis+Chocolate+orange+self-saucing+fondants+Paul+Hollywood+handshake",
+   "notes": "Second handshake of series 17. Connie was Star Baker the same week.",
+   "source_url": "https://www.tvinsider.com/1299215/gbbo-recap-great-british-baking-show-dessert-week/",
+   "confidence": "high",
+   "baker_total_handshakes": 1
+  },
+  {
+   "id": 67,
+   "series": 17,
+   "year": 2026,
+   "episode": 7,
+   "episode_theme": "Free From",
+   "stage": "Heats",
+   "air_date": "2026-11-03",
+   "days_since_series_start": 42,
+   "series_progress_pct": 67,
+   "challenge": "Signature",
+   "baker": "Mo Mahirr",
+   "baker_first_name": "Mo",
+   "bake": "Gluten-free Pop-Tarts",
+   "bake_category": "Pastry & Pies",
+   "sweet_or_savoury": "Sweet",
+   "baker_age": 21,
+   "baker_occupation": "Law student",
+   "baker_hometown": "West Midlands",
+   "baker_final_placing": "Still in (series airing)",
+   "baker_won_series": false,
+   "star_baker_that_week": false,
+   "baker_handshake_number": 1,
+   "handshakes_in_episode": 1,
+   "co_judge": "Nigella Lawson",
+   "channel": "Channel 4",
+   "hosts": "Noel & Alison",
+   "timestamp_in_episode": "",
+   "youtube_clip_url": "",
+   "youtube_search_url": "https://www.youtube.com/results?search_query=Bake+Off+series+17+Mo+Mahirr+Gluten-free+Pop-Tarts+Paul+Hollywood+handshake",
+   "notes": "Free From week. Only one recap mentions this handshake.",
+   "source_url": "https://www.tvinsider.com/1302045/gbbo-great-british-baking-show-recap-free-from-week/",
+   "confidence": "medium",
+   "baker_total_handshakes": 1
   }
  ],
  "episodes": [
@@ -3680,18 +3753,18 @@
    "series": 17,
    "year": 2026,
    "episode": 1,
-   "theme": "Week 1",
+   "theme": "Cake",
    "air_date": "2026-09-22",
-   "star_baker": null,
+   "star_baker": "Mo",
    "handshakes": 0
   },
   {
    "series": 17,
    "year": 2026,
    "episode": 2,
-   "theme": "Week 2",
+   "theme": "Biscuits",
    "air_date": "2026-09-29",
-   "star_baker": null,
+   "star_baker": "Tom",
    "handshakes": 0
   },
   {
@@ -3701,6 +3774,42 @@
    "theme": "Audience Choice",
    "air_date": "2026-10-06",
    "star_baker": "Clara",
+   "handshakes": 1
+  },
+  {
+   "series": 17,
+   "year": 2026,
+   "episode": 4,
+   "theme": "Bread",
+   "air_date": "2026-10-13",
+   "star_baker": "Tom",
+   "handshakes": 0
+  },
+  {
+   "series": 17,
+   "year": 2026,
+   "episode": 5,
+   "theme": "Desserts",
+   "air_date": "2026-10-20",
+   "star_baker": "Connie",
+   "handshakes": 1
+  },
+  {
+   "series": 17,
+   "year": 2026,
+   "episode": 6,
+   "theme": "Pastry",
+   "air_date": "2026-10-27",
+   "star_baker": "Tom",
+   "handshakes": 0
+  },
+  {
+   "series": 17,
+   "year": 2026,
+   "episode": 7,
+   "theme": "Free From",
+   "air_date": "2026-11-03",
+   "star_baker": "Gabe",
    "handshakes": 1
   }
  ],
@@ -3872,8 +3981,8 @@
    "co_judge": "Nigella Lawson",
    "hosts": "Noel & Alison",
    "winner": null,
-   "episodes_aired": 3,
-   "handshakes": 1
+   "episodes_aired": 7,
+   "handshakes": 3
   }
  ]
 }

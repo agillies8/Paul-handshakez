@@ -1,6 +1,6 @@
 # Hollywood Handshake Index
 
-Every Paul Hollywood handshake on *The Great British Bake Off*, series 1 to series 17 week 3: 65 handshakes across 157 episodes, with the baker, bake, challenge, week, and what happened to them afterwards.
+Every Paul Hollywood handshake on *The Great British Bake Off*, series 1 to series 17 week 7: 67 handshakes across 161 episodes, with the baker, bake, challenge, week, and what happened to them afterwards.
 
 ## Run it
 
